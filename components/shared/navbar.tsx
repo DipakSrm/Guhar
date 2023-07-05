@@ -53,7 +53,7 @@ export default function Navbar() {
                   <Link href="/categories/economics">Economics</Link>
                 </li>
                 <li className="text-slate-400 hover:text-white">
-                  <Link href="/currentaffairs">CurrentAffairs</Link>
+                  <Link href="/categories/currentaffairs">CurrentAffairs</Link>
                 </li>
               </ul>
             </li>
