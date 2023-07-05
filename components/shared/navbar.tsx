@@ -31,10 +31,10 @@ export default function Navbar() {
       >
         <div className="">
           <ul>
-            <li className="inline-block p-4">
+            <li className="inline-block p-2 text-sm">
               <Link href="/">Home</Link>
             </li>
-            <li className="inline-block p-4">
+            <li className="inline-block p-2 text-sm">
               <div className="flex gap-3 ">
                 <span>Categories</span>
                 <button onClick={() => setdropOpen(!dropOpen)}>
@@ -57,10 +57,10 @@ export default function Navbar() {
                 </li>
               </ul>
             </li>
-            <li className="inline-block p-4">
+            <li className="inline-block p-2 text-sm">
               <Link href="/About-Us">About-Us</Link>
             </li>
-            <li className="inline-block p-4">
+            <li className="inline-block p-2 text-sm">
               <Link href="/Contact">Contact</Link>
             </li>
           </ul>
