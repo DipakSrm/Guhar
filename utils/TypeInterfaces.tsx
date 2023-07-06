@@ -5,6 +5,7 @@ export interface Post {
   Content?: string;
   id?: string;
   Image?: string;
+  Category?: string;
   [x: string]: any;
 }
 

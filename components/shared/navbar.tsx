@@ -36,7 +36,7 @@ export default function Navbar() {
             </li>
             <li className="inline-block p-2 text-sm">
               <div className="flex gap-3 ">
-                <span>Categories</span>
+                <span className="">Categories</span>
                 <button onClick={() => setdropOpen(!dropOpen)}>
                   <CheveronDownIcon className="w-6 " />
                 </button>

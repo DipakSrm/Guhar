@@ -45,6 +45,7 @@ const handler = async (req: string, res: HomePost) => {
         CreatedOn: document.$createdAt,
         Content: document.Content,
         id: document.$id,
+        Category: document.Category,
         Image: document["Image"],
       };
     });

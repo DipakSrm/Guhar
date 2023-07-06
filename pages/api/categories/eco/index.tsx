@@ -23,6 +23,7 @@ const handler = async (req: string, res: HomePost) => {
         createdon: document.$createdAt,
         content: document.Content,
         id: document.$id,
+        Category: document.Category,
         image: document["Image"],
       };
     });
