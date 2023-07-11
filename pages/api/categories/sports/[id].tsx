@@ -1,7 +1,7 @@
 import { Client, Databases } from "appwrite";
 import { Post, HomePost } from "@/utils/TypeInterfaces";
 import { NextApiRequest, NextApiResponse } from "next";
-import { DB_ID, ENDPOINT, PROJ_ID, SPORTS_ID } from "@/utils/sharedConst";
+import { CMS_DB_ID, ENDPOINT, PROJ_ID, SPORTS_ID } from "@/utils/sharedConst";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const param = req.query.id;
@@ -14,7 +14,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       .setEndpoint(`${ENDPOINT}`) // Your API Endpoint
       .setProject(`${PROJ_ID}`); // Your project ID
     const promise = databases.getDocument(
-      `${DB_ID}`,
+      `${CMS_DB_ID}`,
       `${SPORTS_ID}`,
       `${param}`
     );

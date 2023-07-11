@@ -14,7 +14,9 @@ export default function Navbar() {
         <button onClick={() => setbarsOpen(!barsOpen)}>
           <Bars3Icon className="w-6" />
         </button>
-        <div className="text-3xl font-bold py-6">गुहर</div>
+        <div className="text-3xl font-bold py-6">
+          <Link href="/">गुहर</Link>
+        </div>
 
         <div className="flex gap-2">
           <span>

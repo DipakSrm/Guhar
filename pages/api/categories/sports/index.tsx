@@ -1,6 +1,6 @@
 import { Client, Databases } from "appwrite";
 import { Post, HomePost } from "@/utils/TypeInterfaces";
-import { DB_ID, ENDPOINT, PROJ_ID, SPORTS_ID } from "@/utils/sharedConst";
+import { CMS_DB_ID, ENDPOINT, PROJ_ID, SPORTS_ID } from "@/utils/sharedConst";
 
 const handler = async (req: string, res: HomePost) => {
   try {
@@ -10,7 +10,7 @@ const handler = async (req: string, res: HomePost) => {
     client
       .setEndpoint(`${ENDPOINT}`) // Your API Endpoint
       .setProject(`${PROJ_ID}`); // Your project ID
-    const promise = databases.listDocuments(`${DB_ID}`, `${SPORTS_ID}`);
+    const promise = databases.listDocuments(`${CMS_DB_ID}`, `${SPORTS_ID}`);
 
     const response = await promise;
 
