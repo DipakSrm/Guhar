@@ -60,7 +60,7 @@ export async function getServerSideProps({ req }: { req: NextApiRequest }) {
 
   try {
     const response_cms = await fetch(`${baseUrl}/api/cat_index`);
-    const response_blogs = await fetch(`http://localhost:3000/api/blogs`);
+    const response_blogs = await fetch(`${baseUrl}/api/blogs`);
 
     if (!response_cms.ok || !response_blogs.ok) {
       console.log("Error in API response");
