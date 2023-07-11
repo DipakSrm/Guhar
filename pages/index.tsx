@@ -34,12 +34,12 @@ export default function HomePage({ data_cms, data_blogs }: HomeBlog) {
         </div>
       </div>{" "}
       {/* Section Break */}
-      <div className="flex items-center justify-between mx-3 py-8 px-4 my-4">
-        <div className="text-6xl text-red-900 font-bold text-left ">
+      <div className="flex items-center justify-between mx-3 py-8 px-4 my-4 flex-col md:flex-row lg:flex-row sm:gap-8">
+        <div className="text-6xl text-red-900 font-bold text-left order-2 lg:order-1 md:order-1">
           Trending Now{" "}
         </div>
 
-        <div className="text-lg font-semibold text-red-700 text-right onclick">
+        <div className="text-lg font-semibold text-red-700 text-right onclick order-1 lg:order-2 md:order-2">
           <Link href="/news">See More...</Link>
         </div>
       </div>
