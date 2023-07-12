@@ -14,7 +14,7 @@ export default function HomePage({ data_cms, data_blogs }: HomeBlog) {
   console.log("data blogs", data_blogs);
   return (
     <MainLayout>
-      <div className="grid grid-cols-5  my-6 py-5  mx-4">
+      <div className="grid grid-cols-5  my-6 py-5  mx-4 ">
         <div className="lg:col-span-3 w-full mx-auto col-span-12">
           <Image
             src={`https://cloud.appwrite.io/v1/storage/buckets/648d9fe4c0445ed85915/files/64a6fc759cc96b4417c0/view?project=648d91fcb9386a6a3ee5&mode=admin`}
@@ -39,15 +39,28 @@ export default function HomePage({ data_cms, data_blogs }: HomeBlog) {
           Trending Now{" "}
         </div>
 
-        <div className="text-lg font-semibold text-red-700 text-right onclick order-1 lg:order-2 md:order-2">
+        <div className="text-lg font-semibold text-red-700 text-right  order-1 lg:order-2 md:order-2">
           <Link href="/news">See More...</Link>
         </div>
       </div>
       {/* Section Break */}
       <div className="lg:overflow-x-auto ">
         <div className=" flex gap-3 py-4 flex-col lg:flex-row">
-          {data_blogs.map((item: Blog) => {
-            return <Card item={item} key={item.id} />;
+          {data_blogs.map((item: Blog, index: number) => {
+            if (index < 10) {
+              return <Card item={item} index={index} key={item.id} />;
+            }
+            if (index == 10) {
+              return (
+                <Link
+                  href="/blogs"
+                  className="text-lg font-semibold text-red-700 w-full h-full my-auto mx-4"
+                >
+                  See More...
+                </Link>
+              );
+            }
+            return null;
           })}
         </div>
       </div>

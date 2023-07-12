@@ -15,8 +15,16 @@ export default function ({ item, index }: Post) {
     <>
       <div
         key={item.id}
-        className="shadow grid grid-cols-5 gap-3 hover:cursor-pointer min-w-[30%]"
-        onClick={() => router.push(`/categories/${item.Category}/${item.id}`)}
+        className="shadow grid grid-cols-5 gap-3 hover:cursor-pointer min-w-[30%] my-3"
+        onClick={() =>
+          router.push(
+            `${
+              item.Category
+                ? `/categories/${item.Category}/${item.id}`
+                : `/blogs/${item.id}`
+            }`
+          )
+        }
       >
         <div className={"col-span-2 px-1 py-2 rounded-md  "}>
           {" "}

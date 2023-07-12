@@ -13,10 +13,6 @@ export default function CatCard({
   const router = useRouter();
   return (
     <div className="rounded-lg shadow">
-      <h1 className="font-bold text-2xl">{Title}</h1>
-      <p>{Content ? Content.slice(0, 100) : `Loading..`}...</p>
-      <p>Created On: {calculation(CreatedOn)}</p>
-      <p>Author: {Author}</p>
       <Image
         src={ImageUrl}
         alt="Card Image"
@@ -24,6 +20,10 @@ export default function CatCard({
         width={500}
         className="roiunded-sm"
       />
+      <h1 className="font-bold text-2xl">{Title}</h1>
+      <p>{Content ? Content.slice(0, 100) : `Loading..`}...</p>
+      <p>Created On: {calculation(CreatedOn)}</p>
+      <p>Author: {Author}</p>
     </div>
   );
 }

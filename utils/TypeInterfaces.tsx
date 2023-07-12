@@ -21,6 +21,7 @@ export interface Blog {
   id?: string;
   Image1?: string;
   Image2?: String;
+  [x: string]: any;
 }
 export interface HomeBlog {
   data: Array<Blog>;

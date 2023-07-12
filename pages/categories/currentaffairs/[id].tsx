@@ -1,4 +1,4 @@
-import InCard from "@/components/inCard";
+import InCard from "@/components/in_Cat_Card";
 import Footer from "@/components/shared/footer";
 import { Post, HomePost } from "@/utils/TypeInterfaces";
 import { NextApiRequest } from "next";
