@@ -23,3 +23,12 @@ export function calculation(props: any): string {
     return `${yearsAgo} year${yearsAgo !== 1 ? "s" : ""} ago`;
   }
 }
+export function sort(props: string): string {
+  let array = props.split("");
+
+  for (let i = 0; i < 19; i++) {
+    array.pop();
+  }
+
+  return array.join(""); // Convert the array back to a string
+}

@@ -14,7 +14,7 @@ export default function HomePage({ data_cms, data_blogs }: HomeBlog) {
   console.log("data blogs", data_blogs);
   return (
     <MainLayout>
-      <div className="grid grid-cols-5  my-6 py-5  mx-4 ">
+      <div className="grid grid-cols-5   py-5  mx-4 ">
         <div className="lg:col-span-3 w-full mx-auto col-span-12">
           <Image
             src={`https://cloud.appwrite.io/v1/storage/buckets/648d9fe4c0445ed85915/files/64a6fc759cc96b4417c0/view?project=648d91fcb9386a6a3ee5&mode=admin`}

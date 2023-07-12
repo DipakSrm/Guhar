@@ -68,6 +68,7 @@ const handler = async (req: string, res: HomePost) => {
         Content: document.Content,
         id: document.$id,
         Image: document["Image"],
+        published: document.$updatedAt,
       };
     });
 

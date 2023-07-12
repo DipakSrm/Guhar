@@ -1,15 +1,23 @@
-import { Blog } from "@/utils/TypeInterfaces";
+import { Blog, HomeBlog } from "@/utils/TypeInterfaces";
 import { calculation } from "@/utils/sharedFunction";
 import Image from "next/image";
 
 export default function InBloCard({
-  Title,
-  Author,
-  Content,
-  Image1_Url,
-  Image2_Url,
-  CreatedOn,
-}: Blog) {
+  data1,
+  data2,
+}: {
+  data1: Blog;
+  data2: HomeBlog;
+}) {
+  const {
+    Title,
+    Author,
+    Content,
+    Image1,
+    Image2 = "",
+    CreatedOn,
+  }: Blog = data1;
+  console.log("data2", data2);
   return (
     <>
       <div className="flex flex-col items-center justify-center my-8 ">
@@ -19,19 +27,16 @@ export default function InBloCard({
       </div>{" "}
       <div className="mx-auto w-[60%] my-[5%] ">
         <Image
-          src={Image1_Url}
+          src={Image1 ? Image1 : ""}
           alt="Image"
           className="my-10 rounded-sm shadow"
           width={800}
           height={800}
         />
         <p className="text-xl font-semibold">{Content}</p>
-        <img
-          src={Image2_Url}
-          height={500}
-          width={500}
-          className={Image2_Url ? "block" : "hidden"}
-        />
+        {Image2 && (
+          <img src={Image2} height={500} width={500} className="block" />
+        )}
         <p className=" text-right font-bold text-l">-({Author})</p>
       </div>
     </>

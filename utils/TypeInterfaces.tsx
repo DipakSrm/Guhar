@@ -20,7 +20,7 @@ export interface Blog {
   Content?: string;
   id?: string;
   Image1?: string;
-  Image2?: String;
+  Image2?: string;
   [x: string]: any;
 }
 export interface HomeBlog {
