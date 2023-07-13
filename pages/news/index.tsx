@@ -11,10 +11,10 @@ export default function HomePage({ data }: HomePost) {
   console.log("data", data);
   return (
     <MainLayout>
-      <h1 className="text-red-900 my-6 text-7xl font-bold text-center">
+      <h1 className="text-red-900  py-4 text-7xl font-bold text-center">
         Latest News
       </h1>
-      <div className="grid h-full  grid-rows-3 xl:grid-cols-2  gap-3 my-3">
+      <div className="grid h-full  grid-rows-3 xl:grid-cols-2  gap-6 my-3 ">
         {data.map((item: Post, index: number) => {
           return <Card item={item} index={index} key={item.id} />;
         })}

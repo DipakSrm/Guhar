@@ -38,8 +38,8 @@ export async function getServerSideProps(context: any) {
     const data2 = await response2.json();
     return {
       props: {
+        data2: data2.data,
         data1: data1,
-        data2: data2,
       },
     };
   } catch (error) {

@@ -9,12 +9,25 @@ export default function CatCard({
   CreatedOn,
   Author,
   ImageUrl,
+  Category,
+  id,
 }: Post) {
   const router = useRouter();
   return (
-    <div className="rounded-lg shadow">
+    <div
+      className="rounded-lg shadow hover:cursor-pointer"
+      onClick={() =>
+        router.push(
+          `${
+            Category
+              ? `/categories/${Category.toLowerCase()}/${id}`
+              : `/blogs/${id}`
+          }`
+        )
+      }
+    >
       <Image
-        src={ImageUrl}
+        src={ImageUrl ? ImageUrl : ""}
         alt="Card Image"
         height={500}
         width={500}

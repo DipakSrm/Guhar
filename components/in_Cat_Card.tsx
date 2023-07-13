@@ -1,6 +1,8 @@
 import { HomePost, Post } from "@/utils/TypeInterfaces";
 import { calculation, sort } from "@/utils/sharedFunction";
 import Image from "next/image";
+import CatCard from "./CatCard";
+import Link from "next/link";
 
 export default function InBlog({
   data1,
@@ -20,6 +22,7 @@ export default function InBlog({
   if (!data1) {
     return "Loading...";
   }
+
   return (
     <div className="mx-3">
       <div className="flex flex-col">
@@ -40,6 +43,38 @@ export default function InBlog({
       <div className="bg-white w-[60%] rounded-md py-8 px-8">
         <p className="text-2xl leading-normal font-semibold">{Content}</p>
         <p className="text-right font-bold text-l py-3">-{Author}</p>
+        {/**new trending section */}
+        <h1 className="font-bold text-6xl text-red-900 my-5">
+          More Stories Like This
+        </h1>{" "}
+        <div className="grid grid-cols-2 gap-8 p-4">
+          {data2.map((item: Post, index: number) => {
+            if (index < 5) {
+              return (
+                <CatCard
+                  Title={item.title}
+                  Content={item.content}
+                  ImageUrl={item.image}
+                  Author={item.author}
+                  CreatedOn={item.createdon}
+                  Category={item.Category}
+                  id={item.id}
+                  key={item.id}
+                />
+              );
+            }
+            if (index == 5) {
+              return (
+                <Link
+                  href="/news"
+                  className="font-semibold text-xl text-red-400"
+                >
+                  See More...
+                </Link>
+              );
+            }
+          })}
+        </div>
       </div>
     </div>
   );
