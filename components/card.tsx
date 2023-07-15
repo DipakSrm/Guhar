@@ -15,7 +15,7 @@ export default function ({ item, index }: Post) {
     <>
       <div
         key={item.id}
-        className="shadow grid grid-cols-5 gap-3 hover:cursor-pointer min-w-[30%] my-3 bg-white rounded-md"
+        className="shadow   gap-3 hover:cursor-pointer min-w-[30%] my-3 bg-white rounded-md"
         onClick={() =>
           router.push(
             `${
@@ -26,7 +26,7 @@ export default function ({ item, index }: Post) {
           )
         }
       >
-        <div className={"col-span-2 px-1 py-2 rounded-md  "}>
+        <div className={" px-1 py-2 rounded-md  "}>
           {" "}
           <Image
             src={item.Image || item.Image1}
@@ -36,7 +36,7 @@ export default function ({ item, index }: Post) {
             className="rounded-md"
           />
         </div>
-        <div className="col-span-3  px-4 py-2">
+        <div className=" px-4 py-2">
           {" "}
           <h1 className="text-4xl font-semibold mb-2 py-2">{item.Title}</h1>
           <p className="font-light text-xl">

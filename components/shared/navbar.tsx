@@ -1,73 +1,88 @@
 import Link from "next/link";
-import CheveronDownIcon from "@heroicons/react/24/solid/ChevronDownIcon";
 import { useState } from "react";
-import Bars3Icon from "@heroicons/react/24/solid/Bars3Icon";
-import MagnyfyingIcon from "@heroicons/react/24/solid/MagnifyingGlassIcon";
-
+import Bars from "@heroicons/react/24/solid/Bars4Icon";
+import XMarkIcon from "@heroicons/react/24/solid/XMarkIcon";
 export default function Navbar() {
-  const [dropOpen, setdropOpen] = useState(false);
-  const [barsOpen, setbarsOpen] = useState(true);
-
+  const [isOpen, setisOpen] = useState(false);
   return (
     <>
-      <div className="w-full h-[20%] bg-black text-white flex justify-evenly items-center">
-        <button onClick={() => setbarsOpen(!barsOpen)}>
-          <Bars3Icon className="w-6" />
-        </button>
-        <div className="text-3xl font-bold py-6">
-          <Link href="/">गुहर</Link>
-        </div>
+      {" "}
+      <div className="bg-black w-full max-h-[20%] py-4 flex items-center justify-evenly">
+        <Bars
+          className="w-5 block md:hidden lg:hidden text-white"
+          onClick={() => setisOpen(!isOpen)}
+        />
+        <Link
+          href="/blogs"
+          className="text-white text-lg hidden lg:block md:block"
+        >
+          Blogs
+        </Link>
+        <Link
+          href="/categories/currentaffairs"
+          className="text-white text-lg hidden lg:block md:block"
+        >
+          Current Affairs
+        </Link>
+        <Link
+          href="/categories/sports"
+          className="text-white text-lg hidden lg:block md:block"
+        >
+          Sports
+        </Link>
+        <Link href="/" className="text-white text-3xl font-bold ">
+          गुहार
+        </Link>
+        <Link
+          href="/categories/economics"
+          className="text-white text-lg hidden lg:block md:block"
+        >
+          Economics
+        </Link>
 
-        <div className="flex gap-2">
-          <span>
-            {" "}
-            <MagnyfyingIcon className="w-6" />
-          </span>
-          Search
-        </div>
+        <Link
+          href="/contact-us"
+          className="text-white text-lg hidden lg:block md:block"
+        >
+          Contact Us
+        </Link>
+        <div className="text-white text-lg "> search</div>
       </div>
-      <div
-        className={`bg-black text-white w-full flex justify-evenly overflow-hidden transition-all ${
-          barsOpen ? `block max-h-400px ease-in` : `max-h-0 ease-out hidden`
-        }`}
-      >
-        <div className="">
-          <ul>
-            <li className="inline-block p-2 text-sm">
-              <Link href="/">Home</Link>
-            </li>
-            <li className="inline-block p-2 text-sm">
-              <div className="flex gap-3 ">
-                <span className="">Categories</span>
-                <button onClick={() => setdropOpen(!dropOpen)}>
-                  <CheveronDownIcon className="w-6 " />
-                </button>
-              </div>
-              <ul
-                className={`overflow-hidden transition-all ${
-                  dropOpen ? "max-h-[200px] ease-in" : "max-h-0 ease-out"
-                }`}
-              >
-                <li className="text-slate-400 hover:text-white">
-                  <Link href="/categories/sports">Sports</Link>
-                </li>
-                <li className="text-slate-400 hover:text-white">
-                  <Link href="/categories/economics">Economics</Link>
-                </li>
-                <li className="text-slate-400 hover:text-white">
-                  <Link href="/categories/currentaffairs">CurrentAffairs</Link>
-                </li>
-              </ul>
-            </li>
-            <li className="inline-block p-2 text-sm">
-              <Link href="/About-Us">About-Us</Link>
-            </li>
-            <li className="inline-block p-2 text-sm">
-              <Link href="/Contact">Contact</Link>
-            </li>
-          </ul>
+      {/**this is for small devices */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-gray-50 flex flex-col justify-center items-center gap-3 transition-all ease-in duration-500"
+          style={{ left: isOpen ? "0" : "-100%" }}
+        >
+          <XMarkIcon
+            className="w-10 text-black absolute top-[10%] right-[10%]"
+            onClick={() => setisOpen(!isOpen)}
+          />
+          <Link href="/" className="text-black text-3xl font-bold ">
+            गुहार
+          </Link>
+          <Link href="/blogs" className="text-black text-lg ">
+            Blogs
+          </Link>
+          <Link
+            href="/categories/currentaffairs"
+            className="text-black text-lg "
+          >
+            Current Affairs
+          </Link>
+          <Link href="/categories/sports" className="text-black text-lg ">
+            Sports
+          </Link>
+
+          <Link href="/categories/economics" className="text-black text-lg ">
+            Economics
+          </Link>
+
+          <Link href="/contact-us" className="text-black text-lg ">
+            Contact Us
+          </Link>
         </div>
-      </div>
+      )}
     </>
   );
 }
