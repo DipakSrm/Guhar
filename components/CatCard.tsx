@@ -15,6 +15,7 @@ export default function CatCard({
   const router = useRouter();
   return (
     <div
+      key={id}
       className="rounded-lg shadow hover:cursor-pointer"
       onClick={() =>
         router.push(

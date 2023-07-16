@@ -27,3 +27,16 @@ export interface HomeBlog {
   data: Array<Blog>;
   [x: string]: any;
 }
+export interface VideoOriented {
+  Author?: string;
+  Title?: string;
+  CreatedOn?: string;
+  Content?: string;
+  id?: string;
+  Video1?: string;
+}
+export interface HomeVideoOriented {
+  [x: string]: any;
+
+  data: Array<VideoOriented>;
+}

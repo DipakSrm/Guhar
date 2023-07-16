@@ -7,3 +7,5 @@ export const SPORTS_ID = process.env.SPORTS_ID;
 export const BASE_URI = process.env.BASE_URI;
 export const BLOGS_DB_ID = process.env.BLOGS_DB_ID;
 export const TRENDING_ID = process.env.TRENDING_ID;
+export const SPECIAL_DB_ID = process.env.SPECIAL_DB_ID;
+export const VIDEOS_ORIENTED_ID = process.env.VIDEOS_ORIENTED_ID;

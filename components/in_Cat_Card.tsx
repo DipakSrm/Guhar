@@ -48,7 +48,7 @@ export default function InBlog({
           height={800}
         />
       )}
-      <div className="bg-white w-[60%] rounded-md py-8 px-8">
+      <div className="bg-white w-full md:w-[70%] lg:w-[60%] rounded-md py-8 px-8">
         <p className="text-2xl leading-normal font-semibold">{Content}</p>
         {/**new trending section */}
         <h1 className="font-bold text-6xl text-red-900 my-5">
