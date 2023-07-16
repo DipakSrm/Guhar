@@ -25,8 +25,8 @@ export default function Economics({ data }: HomePost) {
                 className="hover:cursor-pointer"
               >
                 <CatCard
-                  Title={item.title}
-                  Content={item.content}
+                  Title={item.Title}
+                  Content={item.Content}
                   ImageUrl={item.image}
                   Author={item.Author}
                   CreatedOn={item.createdon}
