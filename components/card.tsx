@@ -1,16 +1,10 @@
 import Image from "next/image";
-import { calculation } from "@/utils/sharedFunction";
+import { calculation, limitParagraph } from "@/utils/sharedFunction";
 import { Post, HomePost } from "@/utils/TypeInterfaces";
 import { useRouter } from "next/router";
 export default function ({ item, index }: Post) {
   const router = useRouter();
-  function limitParagraph(paragraph: string, limit: number) {
-    if (paragraph.length <= limit) {
-      return paragraph;
-    }
 
-    return paragraph.substring(0, limit).trim() + "...";
-  }
   return (
     <>
       <div

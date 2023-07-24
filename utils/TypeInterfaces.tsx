@@ -27,16 +27,27 @@ export interface HomeBlog {
   data: Array<Blog>;
   [x: string]: any;
 }
-export interface VideoOriented {
+export interface Trending {
   Author?: string;
   Title?: string;
   CreatedOn?: string;
   Content?: string;
   id?: string;
   Video1?: string;
+  Image1?: string;
 }
-export interface HomeVideoOriented {
+export interface HomeTrending {
   [x: string]: any;
 
-  data: Array<VideoOriented>;
+  data: Array<Trending>;
+}
+export interface Assemble {
+  Author?: string;
+  Title?: string;
+  CreatedOn?: string;
+  Content?: string;
+  id?: string;
+  Image?: string;
+  Category?: string;
+  [x: string]: any;
 }

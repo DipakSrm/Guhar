@@ -32,3 +32,10 @@ export function sort(props: string): string {
 
   return array.join(""); // Convert the array back to a string
 }
+export function limitParagraph(paragraph: string, limit: number) {
+  if (paragraph.length <= limit) {
+    return paragraph;
+  }
+
+  return paragraph.substring(0, limit).trim() + "...";
+}

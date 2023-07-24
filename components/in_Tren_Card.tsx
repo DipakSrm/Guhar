@@ -1,30 +1,29 @@
-import { Blog, HomeBlog, HomePost, Post } from "@/utils/TypeInterfaces";
+import {
+  Blog,
+  HomeBlog,
+  HomeTrending,
+  Post,
+  Trending,
+} from "@/utils/TypeInterfaces";
 import { calculation, sort } from "@/utils/sharedFunction";
 import Image from "next/image";
 import CatCard from "./CatCard";
 import Link from "next/link";
 import Card from "./card";
+import Card4Trending from "./Card4Trending";
 
-export default function InBlog({
+export default function InTrendCard({
   data1,
   data2,
   data3,
 }: {
-  data1: Post;
-  data2: HomePost;
+  data1: Trending;
+  data2: HomeTrending;
   data3: HomeBlog;
 }) {
   console.log("data2", data2);
   console.log("data3", data3);
-  const {
-    Title,
-    id,
-    aurthor: Author,
-    Content,
-    Image: Image_Url,
-    $createdAt: CreatedOn,
-    Video1,
-  } = data1;
+  const { Title, id, Author, Content, Image1, CreatedOn, Video1 } = data1;
 
   if (!data1) {
     return "Loading...";
@@ -40,42 +39,38 @@ export default function InBlog({
           Source: <span className="text-black font-thin">{Author}</span>
         </p>
       </div>
-      {Image_Url && (
-        <Image
-          src={Image_Url}
-          alt="Image"
-          className="my-6 rounded-lg shadow"
-          width={800}
-          height={800}
-        />
+      {Video1 && (
+        <video
+          autoPlay
+          width={1000}
+          height={1000}
+          className="rounded-md my-2"
+          controls
+        >
+          <source src={Video1} />
+        </video>
       )}
-
       <div className="bg-white w-full md:w-[70%] lg:w-[60%] rounded-md py-8 px-8">
         <p className="text-2xl leading-normal font-semibold">{Content}</p>
+        <Image
+          src={Image1 ? Image1 : ""}
+          width={500}
+          height={500}
+          alt="picture"
+        />
         {/**new trending section */}
         <h1 className="font-bold text-6xl text-red-900 my-5">
           More Stories Like This
         </h1>{" "}
         <div className="grid grid-cols-2 gap-8 p-4">
-          {data2.map((item: Post, index: number) => {
+          {data2.map((item: Trending, index: number) => {
             if (index < 5) {
-              return (
-                <CatCard
-                  Title={item.title}
-                  Content={item.content}
-                  ImageUrl={item.image}
-                  Author={item.author}
-                  CreatedOn={item.createdon}
-                  Category={item.Category}
-                  id={item.id}
-                  key={item.id}
-                />
-              );
+              return <Card4Trending item={item} index={index} key={item.id} />;
             }
             if (index == 5) {
               return (
                 <Link
-                  href="/news"
+                  href="/trending"
                   className="font-semibold text-xl text-red-400"
                 >
                   See More...

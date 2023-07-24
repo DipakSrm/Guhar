@@ -1,23 +1,38 @@
 import MainLayout from "@/components/layouts/mainlayout";
-import { Blog, HomeBlog, Post } from "@/utils/TypeInterfaces";
+import {
+  Blog,
+  HomeBlog,
+  HomeTrending,
+  Post,
+  Trending,
+} from "@/utils/TypeInterfaces";
 import Card from "@/components/card";
 import { HomePost } from "@/utils/TypeInterfaces";
 import { NextApiRequest } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import Carousel from "@/components/carousel_for_home";
+import Carousel from "@/components/carousle/carousel_for_home";
 
-export default function HomePage({ data_cms, data_blogs }: HomeBlog) {
+export default function HomePage({
+  data_cms,
+  data_blogs,
+  data_trending,
+}: {
+  data_cms: HomePost;
+  data_blogs: HomeBlog;
+  data_trending: HomeTrending;
+}) {
   if (!data_cms) {
     return <>loading...</>;
   }
   console.log("data", data_cms);
   console.log("data blogs", data_blogs);
+  console.log("data is ipo", data_trending);
   return (
     <MainLayout>
       <div className="grid grid-cols-5   py-5  mx-4 ">
         <div className="lg:col-span-3 w-full mx-auto col-span-12">
-          <Carousel />
+          <Carousel items={data_trending} data={[]} />;
         </div>
         <div className="lg:col-span-2 col-span-12  ">
           {data_cms.map((item: Blog, index: number) => {
@@ -69,7 +84,7 @@ export async function getServerSideProps({ req }: { req: NextApiRequest }) {
   try {
     const response_cms = await fetch(`${baseUrl}/api/cat_index`);
     const response_blogs = await fetch(`${baseUrl}/api/blogs`);
-
+    const response_trending = await fetch(`${baseUrl}/api/trending`);
     if (!response_cms.ok || !response_blogs.ok) {
       console.log("Error in API response");
       // Handle the error or return an appropriate response
@@ -77,11 +92,11 @@ export async function getServerSideProps({ req }: { req: NextApiRequest }) {
 
     const data_cms = await response_cms.json();
     const data_blogs = await response_blogs.json();
-    console.log("data_cms", data_cms);
-    console.log("data_blogs", data_blogs);
+    const data_trending = await response_trending.json();
 
     return {
       props: {
+        data_trending: data_trending.data,
         data_cms: data_cms.data,
         data_blogs: data_blogs.data,
       },
