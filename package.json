@@ -15,7 +15,6 @@
     "appwrite": "^11.0.0",
     "autoprefixer": "10.4.14",
     "axios": "^1.4.0",
-    "flowbite": "^1.7.0",
     "heroicons": "^2.0.18",
     "next": "13.4.6",
     "postcss": "8.4.24",

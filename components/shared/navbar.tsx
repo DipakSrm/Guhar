@@ -7,7 +7,7 @@ export default function Navbar() {
   return (
     <>
       {" "}
-      <div className="bg-black w-full max-h-[20%] py-4 flex items-center justify-evenly">
+      <div className="bg-black w-full max-h-[20%] py-4 flex items-center justify-evenly ">
         <Bars
           className="w-5 block md:hidden lg:hidden text-white"
           onClick={() => setisOpen(!isOpen)}
@@ -51,7 +51,7 @@ export default function Navbar() {
       {/**this is for small devices */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-gray-50 flex flex-col justify-center items-center gap-3 transition-all ease-in duration-500"
+          className="fixed inset-0 bg-gray-50 flex flex-col justify-center items-center gap-3 transition-all ease-in duration-500 z-10"
           style={{ left: isOpen ? "0" : "-100%" }}
         >
           <XMarkIcon

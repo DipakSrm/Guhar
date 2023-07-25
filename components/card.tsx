@@ -8,7 +8,7 @@ export default function ({ item, index }: Post) {
   return (
     <>
       <div
-        key={item.id}
+        key={item.id ? item.id : ""}
         className="shadow   gap-3 hover:cursor-pointer min-w-[30%] my-3 bg-white rounded-md"
         onClick={() =>
           router.push(

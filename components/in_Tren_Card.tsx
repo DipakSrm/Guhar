@@ -23,7 +23,16 @@ export default function InTrendCard({
 }) {
   console.log("data2", data2);
   console.log("data3", data3);
-  const { Title, id, Author, Content, Image1, CreatedOn, Video1 } = data1;
+  const {
+    Title,
+    id,
+    Author,
+    $createdAt: CreatedOn,
+    Content,
+    Image1,
+
+    Video1,
+  } = data1;
 
   if (!data1) {
     return "Loading...";

@@ -32,12 +32,16 @@ export default function HomePage({
     <MainLayout>
       <div className="grid grid-cols-5   py-5  mx-4 ">
         <div className="lg:col-span-3 w-full mx-auto col-span-12">
-          <Carousel items={data_trending} data={[]} />;
+          <Carousel items={data_trending} data={[]} />
         </div>
         <div className="lg:col-span-2 col-span-12  ">
           {data_cms.map((item: Blog, index: number) => {
             if (index < 3) {
-              return <Card item={item} index={index} key={item.id} />;
+              return (
+                <div key={item.id}>
+                  <Card item={item} index={index} key={item.id} />
+                </div>
+              );
             }
             return null; // Skip rendering for items beyond the limit
           })}
@@ -58,7 +62,11 @@ export default function HomePage({
         <div className=" flex gap-3 py-4 flex-col lg:flex-row">
           {data_blogs.map((item: Blog, index: number) => {
             if (index < 10) {
-              return <Card item={item} index={index} key={item.id} />;
+              return (
+                <div key={item.id} className="min-w-[30%]">
+                  <Card item={item} index={index} />
+                </div>
+              );
             }
             if (index == 10) {
               return (

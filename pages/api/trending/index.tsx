@@ -1,4 +1,4 @@
-import { Client, Databases } from "appwrite";
+import { Client, Databases, Query } from "appwrite";
 import { HomeTrending, Trending } from "@/utils/TypeInterfaces";
 import {
   ENDPOINT,
@@ -17,7 +17,8 @@ const handler = async (req: string, res: HomeTrending) => {
 
     const promise = databases.listDocuments(
       `${SPECIAL_DB_ID}`,
-      `${VIDEOS_ORIENTED_ID}`
+      `${VIDEOS_ORIENTED_ID}`,
+      [Query.orderDesc("$createdAt")]
     );
 
     const response = await promise;

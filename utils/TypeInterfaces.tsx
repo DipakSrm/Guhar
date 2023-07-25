@@ -35,6 +35,7 @@ export interface Trending {
   id?: string;
   Video1?: string;
   Image1?: string;
+  [x: string]: any;
 }
 export interface HomeTrending {
   [x: string]: any;

@@ -7,6 +7,7 @@ import {
   ENDPOINT,
   PROJ_ID,
 } from "@/utils/sharedConst";
+import { Trending } from "@/utils/TypeInterfaces";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const param = req.query.id;

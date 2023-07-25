@@ -37,5 +37,5 @@ export function limitParagraph(paragraph: string, limit: number) {
     return paragraph;
   }
 
-  return paragraph.substring(0, limit).trim() + "...";
+  return paragraph.substring(0, limit).trim() + "......" + "See More";
 }
