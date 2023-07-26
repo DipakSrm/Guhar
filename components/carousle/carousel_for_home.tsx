@@ -8,13 +8,13 @@ import ChevronRightIcon from "@heroicons/react/24/solid/ChevronRightIcon";
 export default function Carousel({ items }: HomeTrending) {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setCurrentSlide((prevSlide) => (prevSlide + 1) % items.length);
-  //   }, 8000); // Change slide every 5 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % items.length);
+    }, 8000); // Change slide every 8 seconds
 
-  //   return () => clearInterval(interval);
-  // }, [items.length]);
+    return () => clearInterval(interval);
+  }, [items.length]);
 
   return (
     <div className=" w-full overflow-hidden  items-center ">

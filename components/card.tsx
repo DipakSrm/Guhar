@@ -20,7 +20,7 @@ export default function ({ item, index }: Post) {
           )
         }
       >
-        <div className={" px-1 py-2 rounded-md  "}>
+        <div className={" px-1 py-2 rounded-md  "} key={item.id}>
           {" "}
           <Image
             src={item.Image || item.Image1}

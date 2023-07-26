@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useState } from "react";
 import Bars from "@heroicons/react/24/solid/Bars4Icon";
 import XMarkIcon from "@heroicons/react/24/solid/XMarkIcon";
+import PhoneIcon from "@heroicons/react/24/solid/PhoneIcon";
 export default function Navbar() {
   const [isOpen, setisOpen] = useState(false);
   return (
@@ -14,19 +15,19 @@ export default function Navbar() {
         />
         <Link
           href="/blogs"
-          className="text-white text-lg hidden lg:block md:block"
+          className="text-white text-lg hidden lg:block md:block hover:text-gray-300"
         >
           Blogs
         </Link>
         <Link
           href="/categories/currentaffairs"
-          className="text-white text-lg hidden lg:block md:block"
+          className="text-white text-lg hidden lg:block md:block hover:text-gray-300"
         >
           Current Affairs
         </Link>
         <Link
           href="/categories/sports"
-          className="text-white text-lg hidden lg:block md:block"
+          className="text-white text-lg hidden lg:block md:block hover:text-gray-300"
         >
           Sports
         </Link>
@@ -35,18 +36,23 @@ export default function Navbar() {
         </Link>
         <Link
           href="/categories/economics"
-          className="text-white text-lg hidden lg:block md:block"
+          className="text-white text-lg hidden lg:block md:block hover:text-gray-300"
         >
           Economics
         </Link>
 
+        <div className="text-white text-lg hidden lg:block md:block hover:text-gray-300">
+          {" "}
+          <Link href="/trending">Trending</Link>
+        </div>
+
         <Link
           href="/contact-us"
-          className="text-white text-lg hidden lg:block md:block"
+          className="text-white text-lg  flex gap-1 hover:text-gray-300"
         >
-          Contact Us
+          <PhoneIcon className="w-[20px]" />
+          About Us
         </Link>
-        <div className="text-white text-lg "> search</div>
       </div>
       {/**this is for small devices */}
       {isOpen && (
@@ -79,7 +85,7 @@ export default function Navbar() {
           </Link>
 
           <Link href="/contact-us" className="text-black text-lg ">
-            Contact Us
+            About Us
           </Link>
         </div>
       )}

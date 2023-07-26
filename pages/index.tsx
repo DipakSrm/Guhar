@@ -30,7 +30,7 @@ export default function HomePage({
   console.log("data is ipo", data_trending);
   return (
     <MainLayout>
-      <div className="grid grid-cols-5   py-5  mx-4 ">
+      <div className="grid grid-cols-5 py-5 mx-4 ">
         <div className="lg:col-span-3 w-full mx-auto col-span-12">
           <Carousel items={data_trending} data={[]} />
         </div>
@@ -39,7 +39,7 @@ export default function HomePage({
             if (index < 3) {
               return (
                 <div key={item.id}>
-                  <Card item={item} index={index} key={item.id} />
+                  <Card item={item} index={index} />
                 </div>
               );
             }
@@ -59,7 +59,7 @@ export default function HomePage({
       </div>
       {/* Section Break */}
       <div className="lg:overflow-x-auto ">
-        <div className=" flex gap-3 py-4 flex-col lg:flex-row">
+        <div className="flex gap-3 py-4 flex-col lg:flex-row">
           {data_blogs.map((item: Blog, index: number) => {
             if (index < 10) {
               return (
@@ -68,14 +68,14 @@ export default function HomePage({
                 </div>
               );
             }
-            if (index == 10) {
+            if (index === 10) {
               return (
-                <Link
-                  href="/blogs"
+                <div
+                  key="see-more"
                   className="text-lg font-semibold text-red-700 w-full h-full my-auto mx-4"
                 >
-                  See More...
-                </Link>
+                  <Link href="/blogs">See More...</Link>
+                </div>
               );
             }
             return null;
