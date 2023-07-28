@@ -3,6 +3,7 @@ import { useState } from "react";
 import Bars from "@heroicons/react/24/solid/Bars4Icon";
 import XMarkIcon from "@heroicons/react/24/solid/XMarkIcon";
 import PhoneIcon from "@heroicons/react/24/solid/PhoneIcon";
+import Image from "next/image";
 export default function Navbar() {
   const [isOpen, setisOpen] = useState(false);
   return (
@@ -32,7 +33,17 @@ export default function Navbar() {
           Sports
         </Link>
         <Link href="/" className="text-white text-3xl font-bold ">
-          गुहार
+          <div className="flex items-center">
+            <div className=" max-h-[150px] max-w-[150px] ">
+              <Image
+                className=""
+                src="/logo2.png"
+                alt="logo guhar"
+                height={1000}
+                width={1000}
+              />
+            </div>
+          </div>
         </Link>
         <Link
           href="/categories/economics"
