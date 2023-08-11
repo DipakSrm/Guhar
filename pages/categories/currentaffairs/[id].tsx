@@ -1,10 +1,8 @@
 import InCard from "@/components/in_Cat_Card";
-import Footer from "@/components/shared/footer";
+
 import { Post, HomePost, HomeBlog } from "@/utils/TypeInterfaces";
-import { NextApiRequest } from "next";
-import { useRouter } from "next/router";
+
 import Cardlayout from "@/components/layouts/cardlayout";
-const BASE_URL = process.env.BASE_URI;
 export default function CurrentAffairsId({
   data1,
   data2,
@@ -14,10 +12,6 @@ export default function CurrentAffairsId({
   data2: HomePost;
   data3: HomeBlog;
 }) {
-  console.log("data", data1);
-  console.log("data2", data2);
-  console.log("data3", data3);
-  const router = useRouter();
   return (
     <>
       {" "}

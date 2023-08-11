@@ -14,8 +14,6 @@ export default function InBlog({
   data2: HomePost;
   data3: HomeBlog;
 }) {
-  console.log("data2", data2);
-  console.log("data3", data3);
   const {
     Title,
     id,
@@ -76,6 +74,7 @@ export default function InBlog({
               return (
                 <Link
                   href="/news"
+                  key="see-more-link"
                   className="font-semibold text-xl text-red-400"
                 >
                   See More...
@@ -98,6 +97,7 @@ export default function InBlog({
                 return (
                   <Link
                     href="/blogs"
+                    key="see-more-link"
                     className="text-lg font-semibold text-red-700 w-full h-full my-auto mx-4"
                   >
                     See More...

@@ -1,14 +1,14 @@
 import MainLayout from "@/components/layouts/mainlayout";
-import { Blog, HomeBlog, Post } from "@/utils/TypeInterfaces";
+import { Blog, HomeBlog } from "@/utils/TypeInterfaces";
 import Card from "@/components/card";
-import { HomePost } from "@/utils/TypeInterfaces";
+
 import { NextApiRequest } from "next";
 
 export default function HomeBlog({ data }: HomeBlog) {
   if (!data) {
     return <>loading...</>;
   }
-  console.log("data", data);
+
   return (
     <MainLayout>
       <h1 className="text-red-900 my-6 text-7xl font-bold text-center">

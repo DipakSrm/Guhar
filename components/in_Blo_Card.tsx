@@ -1,5 +1,5 @@
 import { Blog, HomeBlog, HomePost, Post } from "@/utils/TypeInterfaces";
-import { calculation, sort } from "@/utils/sharedFunction";
+import { sort } from "@/utils/sharedFunction";
 import Image from "next/image";
 import Cardlayout from "./layouts/cardlayout";
 import Card from "./card";
@@ -24,8 +24,7 @@ export default function InBloCard({
     $createdAt: CreatedOn,
     id,
   }: Blog = data1;
-  console.log("data2", data2);
-  console.log("data3", data3);
+
   return (
     <>
       <Cardlayout>
@@ -76,6 +75,7 @@ export default function InBloCard({
                   return (
                     <Link
                       href="/blogs"
+                      key="see-more-link"
                       className="font-semibold text-xl text-red-400"
                     >
                       See More...
@@ -98,6 +98,7 @@ export default function InBloCard({
                     return (
                       <Link
                         href="/news"
+                        key="see-more-link"
                         className="text-lg font-semibold text-red-700 w-full h-full my-auto mx-4"
                       >
                         See More...

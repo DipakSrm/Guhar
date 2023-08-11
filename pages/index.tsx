@@ -1,15 +1,9 @@
 import MainLayout from "@/components/layouts/mainlayout";
-import {
-  Blog,
-  HomeBlog,
-  HomeTrending,
-  Post,
-  Trending,
-} from "@/utils/TypeInterfaces";
+import { Blog, HomeBlog, HomeTrending } from "@/utils/TypeInterfaces";
 import Card from "@/components/card";
 import { HomePost } from "@/utils/TypeInterfaces";
 import { NextApiRequest } from "next";
-import Image from "next/image";
+
 import Link from "next/link";
 import Carousel from "@/components/carousle/carousel_for_home";
 
@@ -25,9 +19,7 @@ export default function HomePage({
   if (!data_cms) {
     return <>loading...</>;
   }
-  console.log("data", data_cms);
-  console.log("data blogs", data_blogs);
-  console.log("data is ipo", data_trending);
+
   return (
     <MainLayout>
       <div className="grid grid-cols-5 py-5 mx-4 ">

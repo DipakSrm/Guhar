@@ -9,6 +9,7 @@ import { calculation, sort } from "@/utils/sharedFunction";
 import Image from "next/image";
 import CatCard from "./CatCard";
 import Link from "next/link";
+
 import Card from "./card";
 import Card4Trending from "./Card4Trending";
 
@@ -21,8 +22,6 @@ export default function InTrendCard({
   data2: HomeTrending;
   data3: HomeBlog;
 }) {
-  console.log("data2", data2);
-  console.log("data3", data3);
   const {
     Title,
     id,
@@ -80,6 +79,7 @@ export default function InTrendCard({
               return (
                 <Link
                   href="/trending"
+                  key="see-more-link"
                   className="font-semibold text-xl text-red-400"
                 >
                   See More...
@@ -102,6 +102,7 @@ export default function InTrendCard({
                 return (
                   <Link
                     href="/blogs"
+                    key="see-more-link"
                     className="text-lg font-semibold text-red-700 w-full h-full my-auto mx-4"
                   >
                     See More...

@@ -1,8 +1,6 @@
 import InBloCard from "@/components/in_Blo_Card";
-import Footer from "@/components/shared/footer";
-import { Post, HomePost, Blog, HomeBlog } from "@/utils/TypeInterfaces";
-import { NextApiRequest } from "next";
-import { useRouter } from "next/router";
+
+import { HomePost, Blog, HomeBlog } from "@/utils/TypeInterfaces";
 
 export default function InBlog({
   data1,
@@ -13,12 +11,6 @@ export default function InBlog({
   data2: HomeBlog;
   data3: HomePost;
 }) {
-  console.log("data", data1);
-  console.log("data2", data2);
-  console.log("data3", data3);
-
-  const router = useRouter();
-
   return (
     <>
       <InBloCard data1={data1} data2={data2} data3={data3} />

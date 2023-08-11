@@ -1,11 +1,10 @@
 import Card4Trending from "@/components/Card4Trending";
-import Card from "@/components/card";
+
 import MainLayout from "@/components/layouts/mainlayout";
 import { HomeTrending, Trending } from "@/utils/TypeInterfaces";
 import { NextApiRequest } from "next";
 
 export default function TrendingPage({ data }: HomeTrending) {
-  console.log("trending", data);
   return (
     <>
       <MainLayout>

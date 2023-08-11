@@ -2,7 +2,6 @@ import InTrendCard from "@/components/in_Tren_Card";
 
 import { HomeBlog, Trending, HomeTrending } from "@/utils/TypeInterfaces";
 
-import { useRouter } from "next/router";
 import Cardlayout from "@/components/layouts/cardlayout";
 
 export default function CurrentAffairsId({
@@ -14,10 +13,6 @@ export default function CurrentAffairsId({
   data2: HomeTrending;
   data3: HomeBlog;
 }) {
-  console.log("data", data1);
-  console.log("data2", data2);
-  console.log("data3", data3);
-  const router = useRouter();
   return (
     <>
       {" "}

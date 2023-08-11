@@ -1,8 +1,7 @@
-import Image from "next/image";
 import { calculation } from "@/utils/sharedFunction";
-import { Post, HomePost } from "@/utils/TypeInterfaces";
-import { useRouter } from "next/router";
-export default function ({ item, index }: Post) {
+import { Post } from "@/utils/TypeInterfaces";
+import { useRouter } from "next/navigation";
+export default function ({ item }: Post) {
   const router = useRouter();
   function limitParagraph(paragraph: string, limit: number) {
     if (paragraph.length <= limit) {

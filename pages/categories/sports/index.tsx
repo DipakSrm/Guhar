@@ -1,11 +1,10 @@
 import CatCard from "@/components/CatCard";
 import MainLayout from "@/components/layouts/mainlayout";
-import { Post, HomePost } from "@/utils/TypeInterfaces";
+import { HomePost } from "@/utils/TypeInterfaces";
 import { NextApiRequest } from "next";
-import { useRouter } from "next/router";
-const BASE_URL = process.env.BASE_URI;
+import { useRouter } from "next/navigation";
+
 export default function Economics({ data }: HomePost) {
-  console.log("data", data);
   const router = useRouter();
 
   return (
