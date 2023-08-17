@@ -1,6 +1,7 @@
 import InBloCard from "@/components/in_Blo_Card";
 
 import { HomePost, Blog, HomeBlog } from "@/utils/TypeInterfaces";
+import Head from "next/head";
 
 export default function InBlog({
   data1,
@@ -13,6 +14,12 @@ export default function InBlog({
 }) {
   return (
     <>
+      <Head>
+        {/* <!-- Primary Meta Tags --> */}
+        <title>{data1.Title}</title>
+        <meta name="description" content={data1.Content}></meta>
+        <link rel="icon" href="/favicon.ico"></link>
+      </Head>
       <InBloCard data1={data1} data2={data2} data3={data3} />
     </>
   );

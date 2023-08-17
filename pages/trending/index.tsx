@@ -3,10 +3,17 @@ import Card4Trending from "@/components/Card4Trending";
 import MainLayout from "@/components/layouts/mainlayout";
 import { HomeTrending, Trending } from "@/utils/TypeInterfaces";
 import { NextApiRequest } from "next";
+import Head from "next/head";
 
 export default function TrendingPage({ data }: HomeTrending) {
   return (
     <>
+      <Head>
+        {/* <!-- Primary Meta Tags --> */}
+        <title>Trending Page</title>
+        <meta name="description" content="currently trending in nepal "></meta>
+        <link rel="icon" href="/favicon.ico"></link>
+      </Head>
       <MainLayout>
         <h1 className="text-red-900  py-4 text-7xl font-bold text-center">
           Latest News

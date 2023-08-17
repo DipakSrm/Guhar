@@ -3,7 +3,7 @@ import { Blog, HomeBlog, HomeTrending } from "@/utils/TypeInterfaces";
 import Card from "@/components/card";
 import { HomePost } from "@/utils/TypeInterfaces";
 import { NextApiRequest } from "next";
-
+import Head from "next/head";
 import Link from "next/link";
 import Carousel from "@/components/carousle/carousel_for_home";
 
@@ -22,6 +22,14 @@ export default function HomePage({
 
   return (
     <MainLayout>
+      <Head>
+        <title>Guhar.com</title>
+        <meta
+          property="og:title"
+          content="Title of of page Guhar.com"
+          key="title"
+        />
+      </Head>
       <div className="grid grid-cols-5 py-5 mx-4 ">
         <div className="lg:col-span-3 w-full mx-auto col-span-12">
           <Carousel items={data_trending} data={[]} />

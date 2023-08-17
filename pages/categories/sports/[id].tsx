@@ -3,6 +3,7 @@ import InCard from "@/components/in_Cat_Card";
 import { Post, HomePost, HomeBlog } from "@/utils/TypeInterfaces";
 
 import Cardlayout from "@/components/layouts/cardlayout";
+import { Head } from "next/document";
 
 export default function CurrentAffairsId({
   data1,
@@ -16,6 +17,12 @@ export default function CurrentAffairsId({
   return (
     <>
       {" "}
+      <Head>
+        {/* <!-- Primary Meta Tags --> */}
+        <title>{data1.Title}</title>
+        <meta name="description" content={data1.Content}></meta>
+        <link rel="icon" href="/favicon.ico"></link>
+      </Head>
       <Cardlayout>
         <InCard data1={data1} data2={data2} data3={data3} />
       </Cardlayout>

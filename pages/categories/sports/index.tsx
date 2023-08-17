@@ -2,6 +2,7 @@ import CatCard from "@/components/CatCard";
 import MainLayout from "@/components/layouts/mainlayout";
 import { HomePost } from "@/utils/TypeInterfaces";
 import { NextApiRequest } from "next";
+import Head from "next/head";
 import { useRouter } from "next/navigation";
 
 export default function Economics({ data }: HomePost) {
@@ -9,6 +10,15 @@ export default function Economics({ data }: HomePost) {
 
   return (
     <>
+      <Head>
+        {/* <!-- Primary Meta Tags --> */}
+        <title>Sports Page</title>
+        <meta
+          name="description"
+          content="latest sports news all over nepal "
+        ></meta>
+        <link rel="icon" href="/favicon.ico"></link>
+      </Head>
       <MainLayout>
         <h1 className="text-center font-bold text-6xl my-8">ताजा खबर</h1>
         <h1 className="text-center font-semibold text-3xl text-red-900">
