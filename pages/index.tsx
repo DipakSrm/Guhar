@@ -24,11 +24,38 @@ export default function HomePage({
     <MainLayout>
       <Head>
         <title>Guhar.com</title>
+        <meta property="og:title" content="Guhaar.com" key="title" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+          name="description"
+          content="Get the latest news and updates from Nepal and around the Nepal and the World. Stay informed with Guhaar, your reliable news source."
+        />
+        <meta
+          name="keywords"
+          content="Nepal news, Guhaar, latest news Nepal, breaking news, top headlines Nepal, world news, local news, current events, updates"
+        />
+        <meta name="author" content="Guhaar" />
+        <meta name="robots" content="index, follow" />
+        <meta name="language" content="English" />
+        <meta name="geo.placename" content="Nepal" />
+        <meta name="geo.position" content="27.7172;85.3240" />
+        <meta name="geo.region" content="NP" />
+
         <meta
           property="og:title"
-          content="Title of of page Guhar.com"
-          key="title"
+          content="Guhaar - Latest News from Nepal and Around the World"
         />
+        <meta
+          property="og:description"
+          content="Stay updated with the latest news and top headlines from Nepal and around the world."
+        />
+        <meta property="og:image" content="./images/logo3.png" />
+        <meta property="og:url" content="https://www.guhaar.com" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Guhaar" />
+
+        <meta />
       </Head>
       <div className="grid grid-cols-5 py-5 mx-4 ">
         <div className="lg:col-span-3 w-full mx-auto col-span-12">

@@ -37,7 +37,7 @@ export default function Navbar() {
             <div className=" max-h-[150px] max-w-[150px] ">
               <Image
                 className=""
-                src="/logo2.png"
+                src="/logo3.png"
                 alt="logo guhar"
                 height={1000}
                 width={1000}
