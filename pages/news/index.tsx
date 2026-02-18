@@ -3,46 +3,41 @@ import { Post } from "@/utils/TypeInterfaces";
 import Card from "@/components/card";
 import { HomePost } from "@/utils/TypeInterfaces";
 import { NextApiRequest } from "next";
-import Head from "next/head";
+import SeoHead from "@/components/shared/seo-head";
 
-export default function HomePage({ data }: HomePost) {
-  if (!data) {
-    return <>loading...</>;
-  }
-
+export default function NewsPage({ data }: HomePost) {
   return (
-    <>
-      <Head>
-        {/* <!-- Primary Meta Tags --> */}
-        <title>Latest News</title>
-        <meta
-          name="description"
-          content="Latest news available all over Nepal "
-        ></meta>
-        <link rel="icon" href="/favicon.ico"></link>
-      </Head>
-      <MainLayout>
-        <h1 className="text-red-900  py-4 text-7xl font-bold text-center">
-          Latest News
-        </h1>
-        <div className="grid h-full  grid-rows-3 xl:grid-cols-2  gap-6 my-3 ">
-          {data.map((item: Post, index: number) => {
-            return <Card item={item} index={index} key={item.id} />;
-          })}
-        </div>
-      </MainLayout>
-    </>
+    <MainLayout>
+      <SeoHead
+        title="Latest News | Guhar"
+        description="Read the latest verified updates from Nepal and around the globe on Guhar."
+        path="/news"
+      />
+      <h1 className="mb-6 border-b border-gray-300 pb-3 text-4xl font-bold text-gray-900 md:text-5xl">
+        Latest News
+      </h1>
+      <div className="grid gap-4 md:grid-cols-2">
+        {(data || []).map((item: Post, index: number) => (
+          <Card item={item} index={index} key={item.id} />
+        ))}
+      </div>
+    </MainLayout>
   );
 }
 
+function getBaseUrl(req: NextApiRequest) {
+  const protocol = (req.headers["x-forwarded-proto"] as string) || "http";
+  return `${protocol}://${req.headers.host}`;
+}
+
 export async function getServerSideProps({ req }: { req: NextApiRequest }) {
-  const baseUrl = `${req.headers["x-forwarded-proto"]}://${req.headers.host}`;
+  const baseUrl = getBaseUrl(req);
   const response = await fetch(`${baseUrl}/api/cat_index`);
   const data = await response.json();
 
   return {
     props: {
-      data: data.data,
+      data: data.data || [],
     },
   };
 }

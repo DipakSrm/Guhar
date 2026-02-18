@@ -1,143 +1,112 @@
 import MainLayout from "@/components/layouts/mainlayout";
-import { Blog, HomeBlog, HomeTrending } from "@/utils/TypeInterfaces";
+import { Blog, HomeBlog, HomeTrending, HomePost } from "@/utils/TypeInterfaces";
 import Card from "@/components/card";
-import { HomePost } from "@/utils/TypeInterfaces";
-import { NextApiRequest } from "next";
-import Head from "next/head";
 import Link from "next/link";
 import Carousel from "@/components/carousle/carousel_for_home";
+import SeoHead from "@/components/shared/seo-head";
+import { NextApiRequest } from "next";
+
+type HomePageProps = {
+  data_cms: HomePost["data"];
+  data_blogs: HomeBlog["data"];
+  data_trending: HomeTrending["data"];
+};
 
 export default function HomePage({
   data_cms,
   data_blogs,
   data_trending,
-}: {
-  data_cms: HomePost;
-  data_blogs: HomeBlog;
-  data_trending: HomeTrending;
-}) {
-  if (!data_cms) {
-    return <>loading...</>;
-  }
-
+}: HomePageProps) {
   return (
     <MainLayout>
-      <Head>
-        <title>Guhar.com</title>
-        <meta property="og:title" content="Guhaar.com" key="title" />
+      <SeoHead
+        title="Guhar | Professional News Portal for Nepal"
+        description="Get verified top stories, in-depth reports, and category-focused coverage from Nepal and around the world."
+        path="/"
+      />
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta
-          name="description"
-          content="Get the latest news and updates from Nepal and around the Nepal and the World. Stay informed with Guhaar, your reliable news source."
-        />
-        <meta
-          name="keywords"
-          content="Nepal news, Guhaar, latest news Nepal, breaking news, top headlines Nepal, world news, local news, current events, updates"
-        />
-        <meta name="author" content="Guhaar" />
-        <meta name="robots" content="index, follow" />
-        <meta name="language" content="English" />
-        <meta name="geo.placename" content="Nepal" />
-        <meta name="geo.position" content="27.7172;85.3240" />
-        <meta name="geo.region" content="NP" />
+      <section className="rounded-2xl bg-gradient-to-r from-red-900 to-red-700 p-6 text-white md:p-8">
+        <p className="text-sm font-semibold uppercase tracking-[0.2em]">Live newsroom</p>
+        <h1 className="mt-2 text-3xl font-bold md:text-5xl">Trusted journalism with a modern reading experience</h1>
+        <p className="mt-4 max-w-3xl text-sm md:text-base">
+          Discover breaking updates, expert analysis, and curated headlines in an accessible layout designed for all readers.
+        </p>
+      </section>
 
-        <meta
-          property="og:title"
-          content="Guhaar - Latest News from Nepal and Around the World"
-        />
-        <meta
-          property="og:description"
-          content="Stay updated with the latest news and top headlines from Nepal and around the world."
-        />
-        <meta property="og:image" content="./images/logo3.png" />
-        <meta property="og:url" content="https://www.guhaar.com" />
-        <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="Guhaar" />
+      <section className="mt-8 grid grid-cols-1 gap-6 xl:grid-cols-5" aria-label="Top stories and highlights">
+        <div className="xl:col-span-3">
+          <h2 className="mb-3 text-2xl font-bold text-gray-900">Top Stories</h2>
+          <Carousel items={data_trending || []} data={[]} />
+        </div>
+        <aside className="xl:col-span-2" aria-label="Editor's picks">
+          <div className="mb-3 flex items-end justify-between">
+            <h2 className="text-2xl font-bold text-gray-900">Editor&apos;s Picks</h2>
+            <Link href="/news" className="text-sm font-semibold text-red-700 hover:underline">
+              View all
+            </Link>
+          </div>
+          <div className="space-y-3">
+            {(data_cms || []).slice(0, 3).map((item: Blog) => (
+              <Card key={item.id} item={item} />
+            ))}
+          </div>
+        </aside>
+      </section>
 
-        <meta />
-      </Head>
-      <div className="grid grid-cols-5 py-5 mx-4 ">
-        <div className="lg:col-span-3 w-full mx-auto col-span-12">
-          <Carousel items={data_trending} data={[]} />
+      <section className="mt-10" aria-label="Trending now">
+        <div className="mb-4 flex flex-col justify-between gap-2 border-b border-gray-300 pb-3 md:flex-row md:items-center">
+          <h2 className="text-3xl font-bold text-gray-900">Trending Now</h2>
+          <Link href="/blogs" className="text-sm font-semibold uppercase tracking-wide text-red-700 hover:underline">
+            More articles
+          </Link>
         </div>
-        <div className="lg:col-span-2 col-span-12  ">
-          {data_cms.map((item: Blog, index: number) => {
-            if (index < 3) {
-              return (
-                <div key={item.id}>
-                  <Card item={item} index={index} />
-                </div>
-              );
-            }
-            return null; // Skip rendering for items beyond the limit
-          })}
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {(data_blogs || []).slice(0, 9).map((item: Blog) => (
+            <Card key={item.id} item={item} />
+          ))}
         </div>
-      </div>{" "}
-      {/* Section Break */}
-      <div className="flex items-center justify-between mx-3 py-8 px-4 my-4 flex-col md:flex-row lg:flex-row sm:gap-8">
-        <div className="text-6xl text-red-900 font-bold text-left order-2 lg:order-1 md:order-1">
-          Trending Now{" "}
-        </div>
-
-        <div className="text-lg font-semibold text-red-700 text-right  order-1 lg:order-2 md:order-2">
-          <Link href="/news">See More...</Link>
-        </div>
-      </div>
-      {/* Section Break */}
-      <div className="lg:overflow-x-auto ">
-        <div className="flex gap-3 py-4 flex-col lg:flex-row">
-          {data_blogs.map((item: Blog, index: number) => {
-            if (index < 10) {
-              return (
-                <div key={item.id} className="min-w-[30%]">
-                  <Card item={item} index={index} />
-                </div>
-              );
-            }
-            if (index === 10) {
-              return (
-                <div
-                  key="see-more"
-                  className="text-lg font-semibold text-red-700 w-full h-full my-auto mx-4"
-                >
-                  <Link href="/blogs">See More...</Link>
-                </div>
-              );
-            }
-            return null;
-          })}
-        </div>
-      </div>
+      </section>
     </MainLayout>
   );
 }
 
+function getBaseUrl(req: NextApiRequest) {
+  const protocol = (req.headers["x-forwarded-proto"] as string) || "http";
+  return `${protocol}://${req.headers.host}`;
+}
+
 export async function getServerSideProps({ req }: { req: NextApiRequest }) {
-  const baseUrl = `${req.headers["x-forwarded-proto"]}://${req.headers.host}`;
+  const baseUrl = getBaseUrl(req);
 
   try {
-    const response_cms = await fetch(`${baseUrl}/api/cat_index`);
-    const response_blogs = await fetch(`${baseUrl}/api/blogs`);
-    const response_trending = await fetch(`${baseUrl}/api/trending`);
-    if (!response_cms.ok || !response_blogs.ok) {
-      console.log("Error in API response");
-      // Handle the error or return an appropriate response
-    }
+    const [responseCms, responseBlogs, responseTrending] = await Promise.all([
+      fetch(`${baseUrl}/api/cat_index`),
+      fetch(`${baseUrl}/api/blogs`),
+      fetch(`${baseUrl}/api/trending`),
+    ]);
 
-    const data_cms = await response_cms.json();
-    const data_blogs = await response_blogs.json();
-    const data_trending = await response_trending.json();
+    const [dataCms, dataBlogs, dataTrending] = await Promise.all([
+      responseCms.json(),
+      responseBlogs.json(),
+      responseTrending.json(),
+    ]);
 
     return {
       props: {
-        data_trending: data_trending.data,
-        data_cms: data_cms.data,
-        data_blogs: data_blogs.data,
+        data_trending: dataTrending?.data || [],
+        data_cms: dataCms?.data || [],
+        data_blogs: dataBlogs?.data || [],
       },
     };
   } catch (error) {
     console.log("Error:", error);
-    // Handle the error or return an appropriate response
+
+    return {
+      props: {
+        data_trending: [],
+        data_cms: [],
+        data_blogs: [],
+      },
+    };
   }
 }

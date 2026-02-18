@@ -2,104 +2,76 @@ import Link from "next/link";
 import { useState } from "react";
 import Bars from "@heroicons/react/24/solid/Bars4Icon";
 import XMarkIcon from "@heroicons/react/24/solid/XMarkIcon";
-import PhoneIcon from "@heroicons/react/24/solid/PhoneIcon";
 import Image from "next/image";
+
+const navigationItems = [
+  { href: "/news", label: "Latest" },
+  { href: "/blogs", label: "Blogs" },
+  { href: "/categories/currentaffairs", label: "Current Affairs" },
+  { href: "/categories/sports", label: "Sports" },
+  { href: "/categories/economics", label: "Economy" },
+  { href: "/trending", label: "Trending" },
+  { href: "/contact-us", label: "About" },
+];
+
 export default function Navbar() {
-  const [isOpen, setisOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <>
-      {" "}
-      <div className="bg-black w-full max-h-[20%] py-4 flex items-center justify-evenly ">
-        <Bars
-          className="w-5 block md:hidden lg:hidden text-white"
-          onClick={() => setisOpen(!isOpen)}
-        />
-        <Link
-          href="/blogs"
-          className="text-white text-lg hidden lg:block md:block hover:text-gray-300"
-        >
-          Blogs
-        </Link>
-        <Link
-          href="/categories/currentaffairs"
-          className="text-white text-lg hidden lg:block md:block hover:text-gray-300"
-        >
-          Current Affairs
-        </Link>
-        <Link
-          href="/categories/sports"
-          className="text-white text-lg hidden lg:block md:block hover:text-gray-300"
-        >
-          Sports
-        </Link>
-        <Link href="/" className="text-white text-3xl font-bold ">
-          <div className="flex items-center">
-            <div className=" max-h-[150px] max-w-[150px] ">
-              <Image
-                className=""
-                src="/logo3.png"
-                alt="logo guhar"
-                height={1000}
-                width={1000}
-              />
-            </div>
-          </div>
-        </Link>
-        <Link
-          href="/categories/economics"
-          className="text-white text-lg hidden lg:block md:block hover:text-gray-300"
-        >
-          Economics
+    <header className="sticky top-0 z-40 border-b border-gray-200 bg-white/95 backdrop-blur">
+      <nav
+        aria-label="Main navigation"
+        className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6"
+      >
+        <Link href="/" className="inline-flex items-center gap-3" aria-label="Go to homepage">
+          <Image src="/logo3.png" alt="Guhar logo" width={110} height={52} priority />
+          <span className="hidden text-sm font-semibold uppercase tracking-[0.2em] text-gray-600 md:block">
+            Nepal & Global News
+          </span>
         </Link>
 
-        <div className="text-white text-lg hidden lg:block md:block hover:text-gray-300">
-          {" "}
-          <Link href="/trending">Trending</Link>
-        </div>
-
-        <Link
-          href="/contact-us"
-          className="text-white text-lg  flex gap-1 hover:text-gray-300"
+        <button
+          type="button"
+          className="inline-flex items-center rounded-md p-2 text-gray-800 hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-700 md:hidden"
+          aria-expanded={isOpen}
+          aria-controls="mobile-menu"
+          aria-label="Toggle navigation menu"
+          onClick={() => setIsOpen((prev) => !prev)}
         >
-          <PhoneIcon className="w-[20px]" />
-          About Us
-        </Link>
-      </div>
-      {/**this is for small devices */}
+          {isOpen ? <XMarkIcon className="h-6 w-6" /> : <Bars className="h-6 w-6" />}
+        </button>
+
+        <ul className="hidden items-center gap-5 md:flex">
+          {navigationItems.map((item) => (
+            <li key={item.href}>
+              <Link
+                href={item.href}
+                className="text-sm font-semibold text-gray-700 transition hover:text-red-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-700"
+              >
+                {item.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
       {isOpen && (
-        <div
-          className="fixed inset-0 bg-gray-50 flex flex-col justify-center items-center gap-3 transition-all ease-in duration-500 z-10"
-          style={{ left: isOpen ? "0" : "-100%" }}
-        >
-          <XMarkIcon
-            className="w-10 text-black absolute top-[10%] right-[10%]"
-            onClick={() => setisOpen(!isOpen)}
-          />
-          <Link href="/" className="text-black text-3xl font-bold ">
-            गुहार
-          </Link>
-          <Link href="/blogs" className="text-black text-lg ">
-            Blogs
-          </Link>
-          <Link
-            href="/categories/currentaffairs"
-            className="text-black text-lg "
-          >
-            Current Affairs
-          </Link>
-          <Link href="/categories/sports" className="text-black text-lg ">
-            Sports
-          </Link>
-
-          <Link href="/categories/economics" className="text-black text-lg ">
-            Economics
-          </Link>
-
-          <Link href="/contact-us" className="text-black text-lg ">
-            About Us
-          </Link>
+        <div id="mobile-menu" className="border-t border-gray-200 bg-white px-4 py-3 md:hidden">
+          <ul className="space-y-2" aria-label="Mobile navigation">
+            {navigationItems.map((item) => (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  className="block rounded-md px-3 py-2 text-base font-semibold text-gray-700 hover:bg-gray-100 hover:text-red-700"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       )}
-    </>
+    </header>
   );
 }

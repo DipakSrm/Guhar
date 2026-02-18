@@ -1,43 +1,51 @@
 import Card4Trending from "@/components/Card4Trending";
-
 import MainLayout from "@/components/layouts/mainlayout";
 import { HomeTrending, Trending } from "@/utils/TypeInterfaces";
 import { NextApiRequest } from "next";
-import Head from "next/head";
+import SeoHead from "@/components/shared/seo-head";
 
 export default function TrendingPage({ data }: HomeTrending) {
   return (
-    <>
-      <Head>
-        {/* <!-- Primary Meta Tags --> */}
-        <title>Trending Page</title>
-        <meta name="description" content="currently trending in nepal "></meta>
-        <link rel="icon" href="/favicon.ico"></link>
-      </Head>
-      <MainLayout>
-        <h1 className="text-red-900  py-4 text-7xl font-bold text-center">
-          Latest News
-        </h1>
-        <div className="grid h-full  grid-rows-3 xl:grid-cols-2  gap-6 my-3 ">
-          {data.map((item: Trending, index: number) => {
-            return <Card4Trending item={item} index={index} key={item.id} />;
-          })}
-        </div>
-      </MainLayout>
-    </>
+    <MainLayout>
+      <SeoHead
+        title="Trending Videos | Guhar"
+        description="Watch and follow trending visual stories and highlights selected by Guhar."
+        path="/trending"
+      />
+      <h1 className="mb-6 border-b border-gray-300 pb-3 text-4xl font-bold text-gray-900 md:text-5xl">
+        Trending Videos
+      </h1>
+      <div className="grid gap-4 md:grid-cols-2">
+        {(data || []).map((item: Trending, index: number) => (
+          <Card4Trending item={item} index={index} key={item.id} />
+        ))}
+      </div>
+    </MainLayout>
   );
 }
+
+function getBaseUrl(req: NextApiRequest) {
+  const protocol = (req.headers["x-forwarded-proto"] as string) || "http";
+  return `${protocol}://${req.headers.host}`;
+}
+
 export async function getServerSideProps({ req }: { req: NextApiRequest }) {
-  const baseUrl = `${req.headers["x-forwarded-proto"]}://${req.headers.host}`;
+  const baseUrl = getBaseUrl(req);
   try {
     const response = await fetch(`${baseUrl}/api/trending`);
     const data = await response.json();
     return {
       props: {
-        data: data.data,
+        data: data.data || [],
       },
     };
   } catch (error) {
     console.log(error);
+
+    return {
+      props: {
+        data: [],
+      },
+    };
   }
 }
