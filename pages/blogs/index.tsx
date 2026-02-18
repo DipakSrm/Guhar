@@ -1,45 +1,66 @@
 import MainLayout from "@/components/layouts/mainlayout";
-import { Blog, HomeBlog } from "@/utils/TypeInterfaces";
+import { Blog } from "@/utils/TypeInterfaces";
 import Card from "@/components/card";
-
 import { NextApiRequest } from "next";
-import Head from "next/head";
+import SeoHead from "@/components/shared/seo-head";
+import Pagination from "@/components/shared/pagination";
 
-export default function HomeBlog({ data }: HomeBlog) {
-  if (!data) {
-    return <>loading...</>;
-  }
+type BlogsPageProps = {
+  data: Blog[];
+  currentPage: number;
+  totalPages: number;
+};
 
+const PAGE_SIZE = 8;
+
+export default function BlogsPage({ data, currentPage, totalPages }: BlogsPageProps) {
   return (
-    <>
-      <Head>
-        {/* <!-- Primary Meta Tags --> */}
-        <title>Blogs Page</title>
-        <meta name="description" content="all latest blogs and news "></meta>
-        <link rel="icon" href="/favicon.ico"></link>
-      </Head>
-      <MainLayout>
-        <h1 className="text-red-900 my-6 text-7xl font-bold text-center">
-          Trending Now
-        </h1>
-        <div className="grid h-full  grid-rows-3 xl:grid-cols-2  gap-3 my-3">
-          {data.map((item: Blog, index: number) => {
-            return <Card item={item} index={index} key={item.id} />;
-          })}
-        </div>
-      </MainLayout>
-    </>
+    <MainLayout>
+      <SeoHead
+        title={`Blogs & Features${currentPage > 1 ? ` - Page ${currentPage}` : ""} | Guhar`}
+        description="Explore analysis, explainers, and featured stories curated by Guhar editors."
+        path={currentPage > 1 ? `/blogs?page=${currentPage}` : "/blogs"}
+      />
+      <header className="mb-6 border-b border-gray-300 pb-3">
+        <h1 className="text-4xl font-bold text-gray-900 md:text-5xl">Blogs & Features</h1>
+        <p className="mt-2 text-sm text-gray-600">Editorial analysis, explainers, and long-form reads.</p>
+      </header>
+      <div className="grid gap-4 md:grid-cols-2">
+        {(data || []).map((item: Blog, index: number) => (
+          <Card item={item} index={index} key={item.id} />
+        ))}
+      </div>
+      <Pagination currentPage={currentPage} totalPages={totalPages} basePath="/blogs" />
+    </MainLayout>
   );
 }
 
-export async function getServerSideProps({ req }: { req: NextApiRequest }) {
-  const baseUrl = `${req.headers["x-forwarded-proto"]}://${req.headers.host}`;
+function getBaseUrl(req: NextApiRequest) {
+  const protocol = (req.headers["x-forwarded-proto"] as string) || "http";
+  return `${protocol}://${req.headers.host}`;
+}
+
+function parsePage(page: string | string[] | undefined) {
+  const raw = Array.isArray(page) ? page[0] : page;
+  const parsed = Number.parseInt(raw || "1", 10);
+  return Number.isNaN(parsed) || parsed < 1 ? 1 : parsed;
+}
+
+export async function getServerSideProps({ req, query }: { req: NextApiRequest; query: { page?: string | string[] } }) {
+  const baseUrl = getBaseUrl(req);
+  const page = parsePage(query.page);
   const response = await fetch(`${baseUrl}/api/blogs`);
-  const data = await response.json();
+  const json = await response.json();
+  const data = json.data || [];
+  const totalPages = Math.max(1, Math.ceil(data.length / PAGE_SIZE));
+  const safePage = Math.min(page, totalPages);
+  const start = (safePage - 1) * PAGE_SIZE;
 
   return {
     props: {
-      data: data.data,
+      data: data.slice(start, start + PAGE_SIZE),
+      currentPage: safePage,
+      totalPages,
     },
   };
 }
